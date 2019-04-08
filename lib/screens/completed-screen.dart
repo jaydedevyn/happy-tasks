@@ -14,15 +14,11 @@ class _CompletedScreenState extends State<CompletedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Completed'),),
-        backgroundColor: Colors.lightGreen,
-        body: Padding(
-            padding: EdgeInsets.only(top: 16.0),
-            child: ListView(
-                children: widget.happyTasks
-                    .map((task) => HappyTaskItem(happyTask: task))
-                    .toList(),
-              ),
-            ));
+        appBar: AppBar(title: Text('Completed')),
+        body: ListView(
+          children: widget.happyTasks
+              .map((task) => HappyTaskItem(happyTask: task))
+              .toList(),
+        ));
   }
 }

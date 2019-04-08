@@ -10,27 +10,25 @@ class HappyTaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Column(children: [
+    return Column(children: [
       Row(children: <Widget>[
         Flexible(
             child: ListTile(
-          leading: new CircleAvatar(
+          leading: CircleAvatar(
             child: FlareActor(
               'assets/star.flr',
-              fit: BoxFit.contain,
-              alignment: Alignment.center,
               animation: 'go',
             ),
           ),
-          title: new Text(
-            happyTask.title,
-            style: TextStyle(fontSize: 24.0)
-          ),
+          title: Text(happyTask.title, style: TextStyle(fontSize: 24.0)),
         ))
       ]),
       !happyTask.isCompleted
           ? RaisedButton(
               onPressed: onTap,
+              color: Colors.yellow,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0)),
               child: Text('Complete'),
             )
           : Container()

@@ -13,8 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Map<String, HappyTask> completedTasks = {};
-  Map<String, HappyTask> skippedTasks = {};
+  Map<String, HappyTask> completed = {};
+  Map<String, HappyTask> skipped = {};
   bool _loading = false;
   bool _showConfetti = false;
   HappyTask currentTask = new HappyTask();
@@ -25,14 +25,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void _getHappyTask() async {
     _toggleLoading();
     if (!currentTask.isCompleted) {
-      skippedTasks[currentTask.id] = currentTask;
+      skipped[currentTask.id] = currentTask;
     }
     QuerySnapshot fireStoreDocs =
         await Firestore.instance.collection('happyTasks').getDocuments();
     _toggleLoading();
     final newDoc = fireStoreDocs.documents.firstWhere((doc) =>
-        completedTasks[doc.data['id']] == null &&
-        skippedTasks[doc.data['id']] == null);
+        completed[doc.data['id']] == null &&
+        skipped[doc.data['id']] == null);
 
     setState(() => currentTask = HappyTask.fromJson(newDoc.data));
   }
@@ -43,13 +43,13 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text('HappyTasks'),
         actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.done),
+          IconButton(
+            icon: Icon(Icons.done),
             onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => CompletedScreen(
-                        happyTasks: completedTasks.values.toList()))),
+                        happyTasks: completed.values.toList()))),
           ),
         ],
       ),
@@ -57,18 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-            currentTask.id == null
-                ? Text('Click to add a happyTask',
-                    style: TextStyle(fontSize: 32.0))
-                : Container(),
             _showConfetti
                 ? Container(
                     height: 200.0,
                     width: 200.0,
                     child: FlareActor(
                       'assets/confetti.flr',
-                      fit: BoxFit.contain,
-                      alignment: Alignment.center,
                       animation: 'go',
                     ))
                 : Container(),
@@ -77,23 +71,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     happyTask: currentTask,
                     onTap: () {
                       _toggleConfetti();
-                      Future.delayed(const Duration(milliseconds: 1500), () {
+                      Future.delayed(Duration(milliseconds: 1500), () {
                         setState(() {
                           currentTask.isCompleted = true;
-                          completedTasks[currentTask.id] = currentTask;
+                          completed[currentTask.id] = currentTask;
                         });
                         _toggleConfetti();
                         _getHappyTask();
                       });
                     })
-                : Container(),
-            SizedBox(
-              height: 120.0,
-            ),
-            Text(
-                'Number of happyTasks completed: ${completedTasks.values.where((task) => task.isCompleted).length}'),
+                : Container()
           ])),
-      // This trailing comma makes auto-formatting nicer for build methods.
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _getHappyTask,
         icon: _loading
@@ -103,10 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CircularProgressIndicator(
                     strokeWidth: 2.0,
                     valueColor:
-                        new AlwaysStoppedAnimation<Color>(Colors.white)))
+                        AlwaysStoppedAnimation<Color>(Colors.black)))
             : Icon(Icons.add),
-        label: Text('New Task', style: TextStyle(color: Colors.white)),
-      ),
+        label: Text('New Task'),
+      )
     );
   }
 }
