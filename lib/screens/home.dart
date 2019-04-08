@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:happy_tasks/ui/happy-task.dart';
-import 'package:happy_tasks/models/task.dart';
-import 'package:happy_tasks/screens/completed-screen.dart';
+import '../ui/happy-task.dart';
+import '../models/task.dart';
+import './completed-screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,50 +17,48 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _showConfetti = false;
   Task currentTask = new Task();
 
-  void _toggleLoading() => setState(() => _loading = !_loading);
-  void _toggleConfetti() => setState(() => _showConfetti = !_showConfetti);
+  _toggleLoading() => setState(() => _loading = !_loading);
+  _toggleConfetti() => setState(() => _showConfetti = !_showConfetti);
 
-  void _getHappyTask() async {
+  void _getHappyTask() {
     _toggleLoading();
     if (!currentTask.isCompleted) {
       skipped[currentTask.id] = currentTask;
     }
-    QuerySnapshot fireDocs =
-        await Firestore.instance.collection('happyTasks').getDocuments();
-    _toggleLoading();
-    final newDoc = fireDocs.documents.firstWhere((doc) =>
-        completed[doc.data['id']] == null && skipped[doc.data['id']] == null);
+    Firestore.instance.collection('happyTasks').getDocuments().then((fireDocs) {
+      _toggleLoading();
+      final res = fireDocs.documents.firstWhere(
+          (doc) =>
+              completed[doc.data['id']] == null &&
+              skipped[doc.data['id']] == null, orElse: () {
+        print('Error');
+      });
 
-    setState(() => currentTask = Task.fromJson(newDoc.data));
+      if (res != null) setState(() => currentTask = Task.fromJson(res.data));
+    });
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(
-        title: Text('HappyTasks'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.done),
-            onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CompletedScreen(
-                        tasks: completed.values.toList()))),
-          ),
-        ],
-      ),
+      appBar: AppBar(title: Text('HappyTasks'), actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.done),
+          onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      CompletedScreen(tasks: completed.values.toList()))),
+        )
+      ]),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _showConfetti
-                ? Container(
-                    height: 200.0,
-                    width: 200.0,
-                    child: FlareActor(
-                      'assets/confetti.flr',
-                      animation: 'go',
-                    ))
-                : Container(),
+            Container(
+                height: _showConfetti ? 200.0 : 0.0,
+                child: FlareActor(
+                  'assets/confetti.flr',
+                  animation: 'go',
+                )),
             currentTask.id != null
                 ? HappyTask(
                     task: currentTask,
@@ -85,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: 12.0,
                 child: CircularProgressIndicator(
                     strokeWidth: 2.0,
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.black)))
+                    valueColor: AlwaysStoppedAnimation(Colors.black)))
             : Icon(Icons.add),
         label: Text('New Task'),
       ));

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:happy_tasks/ui/happy-task.dart';
-import 'package:happy_tasks/models/task.dart';
+import '../ui/happy-task.dart';
+import '../models/task.dart';
 
 class CompletedScreen extends StatefulWidget {
   CompletedScreen({this.tasks});
@@ -17,6 +17,6 @@ class _CompletedScreenState extends State<CompletedScreen> {
       body: ListView(
         children: widget.tasks
             .map((task) => HappyTask(task: task))
-            .toList(),
+            .toList()
       ));
 }
