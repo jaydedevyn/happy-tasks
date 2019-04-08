@@ -15,7 +15,6 @@ class HappyTaskItem extends StatelessWidget {
         Flexible(
             child: ListTile(
           leading: new CircleAvatar(
-            backgroundColor: Colors.white30,
             child: FlareActor(
               'assets/star.flr',
               fit: BoxFit.contain,
@@ -25,6 +24,7 @@ class HappyTaskItem extends StatelessWidget {
           ),
           title: new Text(
             happyTask.title,
+            style: TextStyle(fontSize: 24.0)
           ),
         ))
       ]),

@@ -9,7 +9,7 @@ class HappyTasks extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.yellow,
       ),
       home: HomeScreen(),
        routes: <String, WidgetBuilder>{

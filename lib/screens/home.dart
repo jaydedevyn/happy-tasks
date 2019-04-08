@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:happy_tasks/happy-task-item.dart';
 import 'package:happy_tasks/models/happy-task.dart';
@@ -15,9 +16,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Map<String, HappyTask> completedTasks = {};
   Map<String, HappyTask> skippedTasks = {};
   bool _loading = false;
+  bool _showConfetti = false;
   HappyTask currentTask = new HappyTask();
 
   void _toggleLoading() => setState(() => _loading = !_loading);
+  void _toggleConfetti() => setState(() => _showConfetti = !_showConfetti);
 
   void _getHappyTask() async {
     _toggleLoading();
@@ -50,27 +53,38 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-
-      backgroundColor: Colors.lightGreen,
       body: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
             currentTask.id == null
-                ? Text(
-                    'Click to add a happyTask',
-                  )
+                ? Text('Click to add a happyTask',
+                    style: TextStyle(fontSize: 32.0))
+                : Container(),
+            _showConfetti
+                ? Container(
+                    height: 200.0,
+                    width: 200.0,
+                    child: FlareActor(
+                      'assets/confetti.flr',
+                      fit: BoxFit.contain,
+                      alignment: Alignment.center,
+                      animation: 'go',
+                    ))
                 : Container(),
             currentTask.id != null
                 ? HappyTaskItem(
                     happyTask: currentTask,
                     onTap: () {
-                      setState(() {
-                        currentTask.isCompleted = true;
-                        completedTasks[currentTask.id] = currentTask;
+                      _toggleConfetti();
+                      Future.delayed(const Duration(milliseconds: 1500), () {
+                        setState(() {
+                          currentTask.isCompleted = true;
+                          completedTasks[currentTask.id] = currentTask;
+                        });
+                        _toggleConfetti();
+                        _getHappyTask();
                       });
-
-                      _getHappyTask();
                     })
                 : Container(),
             SizedBox(
