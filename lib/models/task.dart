@@ -4,7 +4,7 @@ class Task {
   bool isCompleted;
   Task({this.id, this.title, this.isCompleted = false});
 
-  factory Task.fromJson(Map<String, dynamic> json) => Task(
+  factory Task.fromJson(json) => Task(
       id: json['id'],
       title: json['title'],
       isCompleted: json['isCompleted']);

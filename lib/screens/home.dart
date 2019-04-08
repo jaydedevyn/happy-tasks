@@ -3,7 +3,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import '../ui/happy-task.dart';
 import '../models/task.dart';
-import './completed-screen.dart';
+import 'completed-screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -22,12 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _getHappyTask() {
     _toggleLoading();
-    if (!currentTask.isCompleted) {
-      skipped[currentTask.id] = currentTask;
-    }
-    Firestore.instance.collection('happyTasks').getDocuments().then((fireDocs) {
+    if (!currentTask.isCompleted) skipped[currentTask.id] = currentTask;
+    
+    Firestore.instance.collection('happyTasks').getDocuments().then((docs) {
       _toggleLoading();
-      final res = fireDocs.documents.firstWhere(
+      final res = docs.documents.firstWhere(
           (doc) =>
               completed[doc.data['id']] == null &&
               skipped[doc.data['id']] == null, orElse: () {
@@ -40,19 +39,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(title: Text('HappyTasks'), actions: <Widget>[
+      appBar: AppBar(title: Text('HappyTasks'), actions: [
         IconButton(
           icon: Icon(Icons.done),
           onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      CompletedScreen(tasks: completed.values.toList()))),
+                      Completed(tasks: completed.values.toList()))),
         )
       ]),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             Container(
                 height: _showConfetti ? 200.0 : 0.0,
                 child: FlareActor(
@@ -64,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     task: currentTask,
                     onTap: () {
                       _toggleConfetti();
-                      Future.delayed(Duration(milliseconds: 1500), () {
+                      Future.delayed(Duration(seconds: 2), () {
                         setState(() {
                           currentTask.isCompleted = true;
                           completed[currentTask.id] = currentTask;

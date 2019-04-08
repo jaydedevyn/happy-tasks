@@ -9,7 +9,7 @@ class HappyTask extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(children: [
-        Row(children: <Widget>[
+        Row(children: [
           Flexible(
               child: ListTile(
             leading: CircleAvatar(
