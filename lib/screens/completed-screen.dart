@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:happy_tasks/happy-task-item.dart';
-import 'package:happy_tasks/models/happy-task.dart';
+import 'package:happy_tasks/ui/happy-task.dart';
+import 'package:happy_tasks/models/task.dart';
 
 class CompletedScreen extends StatefulWidget {
-  CompletedScreen({this.happyTasks});
+  CompletedScreen({this.tasks});
 
-  final List<HappyTask> happyTasks;
+  final List<Task> tasks;
   @override
   _CompletedScreenState createState() => _CompletedScreenState();
 }
 
 class _CompletedScreenState extends State<CompletedScreen> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text('Completed')),
-        body: ListView(
-          children: widget.happyTasks
-              .map((task) => HappyTaskItem(happyTask: task))
-              .toList(),
-        ));
-  }
+  Widget build(BuildContext context) => Scaffold(
+      appBar: AppBar(title: Text('Completed')),
+      body: ListView(
+        children: widget.tasks
+            .map((task) => HappyTask(task: task))
+            .toList(),
+      ));
 }

@@ -1,12 +1,12 @@
-class HappyTask {
+class Task {
   String id;
   String title;
   bool isCompleted;
 
-  HappyTask({this.id, this.title, this.isCompleted = false});
-  
-  factory HappyTask.fromJson(Map<String, dynamic> parsedJson)
-    => HappyTask(
+  Task({this.id, this.title, this.isCompleted = false});
+
+  factory Task.fromJson(Map<String, dynamic> parsedJson)
+    => Task(
       id: parsedJson['id'],
       title: parsedJson['title'],
       isCompleted : parsedJson ['isCompleted']

@@ -1,16 +1,3 @@
-# happy_tasks
+Happy Tasks
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+A project that was inspired by how one can define the true meaning of happiness.  The belief is that the app can bring forth positivity and happiness in the world. Defining happiness is a complicated step. Many believe happiness is subjective to the person, and is only temporary. Majority agree they find happiness in others, or in helping others. Technology is something the world can not hide from at this point, and therefore trying to find happiness within it may be a step in the right direction. However, giving users the feeling of having a purpose when using an app is hard. This is why I have created happytasks. A simple, yet beautiful app that shows how completing a simple task can provide such a positive impact in our lives.
