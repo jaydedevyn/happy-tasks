@@ -37,3 +37,5 @@ Users can also delete tasks by swiping the task left or right and then clicking 
 ## Conclusion
 
 The HappyTasks app provides a fun and interactive way for users to stay motivated and accomplish their daily tasks. The app's celebration animations create a positive affirmation for the user, helping them to feel accomplished and motivated to keep going. With its simple and intuitive interface, the HappyTasks app is the perfect tool for anyone looking to stay on top of their daily tasks and feel great while doing it.
+
+[](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTk1ODZiZjhhZWExZGNkZGM3OTY0NDMxN2U3MmU3ZWY2N2Q1M2U5YiZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/hi36Syzr6grK3voRcf/giphy.gif)
