@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../models/task.dart';
 
 class HappyTask extends StatelessWidget {
-  HappyTask({this.task, this.onTap});
+  HappyTask({required this.task, required this.onTap});
   final Task task;
-  final Function onTap;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) => Column(children: [
@@ -20,8 +20,13 @@ class HappyTask extends StatelessWidget {
             title: Text(task.title, style: TextStyle(fontSize: 24.0)),
           ))
         ]),
-        FlatButton(
+        TextButton(
           onPressed: onTap,
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.orange,
+            padding: const EdgeInsets.all(16.0),
+            textStyle: const TextStyle(fontSize: 20),
+          ),
           child: Text(!task.isCompleted ? 'Complete' : ''),
         )
       ]);

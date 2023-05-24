@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>981743908357-2vep79vio8fasv2979b6m3idmfkibd6i.apps.googleusercontent.com</string>
+	<string>981743908357-8q3bt4s63e481qpjh3pjfaq7efqeidkp.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.981743908357-2vep79vio8fasv2979b6m3idmfkibd6i</string>
+	<string>com.googleusercontent.apps.981743908357-8q3bt4s63e481qpjh3pjfaq7efqeidkp</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDUB5MpRlu22xpXnybwCDMKQ2ECoiRGAGA</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.happyTasks</string>
+	<string>com.example.happytasks</string>
 	<key>PROJECT_ID</key>
 	<string>happytasks-9aa3d</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:981743908357:ios:0df97194f85e50f9</string>
+	<string>1:981743908357:ios:db787b1f7d97b412174e6c</string>
 	<key>DATABASE_URL</key>
 	<string>https://happytasks-9aa3d.firebaseio.com</string>
 </dict>

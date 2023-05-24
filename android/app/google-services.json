@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "981743908357",
+    "firebase_url": "https://happytasks-9aa3d.firebaseio.com",
+    "project_id": "happytasks-9aa3d",
+    "storage_bucket": "happytasks-9aa3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981743908357:android:72bfcaec8f179971174e6c",
+        "android_client_info": {
+          "package_name": "com.example.happy_tasks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981743908357-n1earkt751pc3t1dhib29ssj5jrs9563.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdAvPiJabt_J-j9u-VaFi1bswS56nN4F4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981743908357-n1earkt751pc3t1dhib29ssj5jrs9563.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "981743908357-2vep79vio8fasv2979b6m3idmfkibd6i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.happyTasks"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

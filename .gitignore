@@ -15,6 +15,8 @@
 *.iws
 .idea/
 
+lib/firebase_options.dart
+
 # Visual Studio Code related
 .vscode/
 

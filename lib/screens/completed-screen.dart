@@ -3,7 +3,7 @@ import '../ui/happy-task.dart';
 import '../models/task.dart';
 
 class Completed extends StatefulWidget {
-  Completed({this.tasks});
+  Completed({required this.tasks});
 
   final List<Task> tasks;
   @override
@@ -18,5 +18,5 @@ class _CompletedState extends State<Completed> {
           padding: EdgeInsets.only(top: 16.0),
           child: ListView(
               children:
-                  widget.tasks.map((task) => HappyTask(task: task)).toList())));
+                  widget.tasks.map((task) => HappyTask(task: task, onTap: (){})).toList())));
 }
